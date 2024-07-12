@@ -6,7 +6,7 @@
 #include <M5Stack.h>
 #include "Adafruit_SGP30.h"
 #include <WiFi.h>
-#include <./params.h>
+#include "params.h"
 #include <Ambient.h>
 
 //
