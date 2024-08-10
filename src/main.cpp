@@ -26,7 +26,6 @@ Ambient ambient;
 void header(const char *string, uint16_t color)
 {
     M5.Lcd.fillScreen(color);
-    M5.Lcd.setRotation(3);
     M5.Lcd.setTextSize(1);
     M5.Lcd.setTextColor(TFT_WHITE, TFT_BLACK);
     M5.Lcd.fillRect(0, 0, 320, 30, TFT_BLACK);
@@ -34,10 +33,9 @@ void header(const char *string, uint16_t color)
     M5.Lcd.drawString(string, 160, 3, 4); 
 }
 
-
-
 void setup() {
   M5.begin(true, false, true, true);
+  M5.Lcd.setRotation(1);
 //  Wire.begin(SDA_PIN, SCL_PIN);        // join i2c bus (address optional for master)
   header("SGP30 TEST",TFT_BLACK);
   Serial.begin(115200);
@@ -45,10 +43,7 @@ void setup() {
     while (WiFi.status() != WL_CONNECTED) {  //  Wi-Fi AP接続待ち
         delay(100);
     }
-
   ambient.begin(channelId, writeKey, &client);
-
-
   Serial.println("SGP30 test");
   if (! sgp.begin()){
     Serial.println("Sensor not found :(");
